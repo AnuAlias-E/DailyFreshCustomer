@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.training.dto.request.CustomerAddRequest;
+import com.training.dto.request.CustomerOrderRequest;
+import com.training.dto.request.CustomerRewardUpdateRequest;
 import com.training.dto.request.CustomerUpdateRequest;
 import com.training.dto.response.CustomerAddResponse;
+import com.training.dto.response.CustomerOrderResponse;
 import com.training.dto.response.CustomerSearchResponse;
 import com.training.dto.response.CustomerShowAllResponse;
 import com.training.dto.response.CustomerUpdateResponse;
@@ -116,5 +119,20 @@ public class CustomerController {
 		return ResponseEntity.ok(response);
 	}
 
+	@PostMapping(value="/placeOrder",produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<CustomerOrderResponse> placeOrder(@RequestBody CustomerOrderRequest orderRequest) {
+		ResponseEntity<CustomerOrderResponse> response = service.placeOrderForCustomer(orderRequest);
+	    return response;
+	}
+	
 
+	@PutMapping("/updateRewardPoints")
+	public ResponseEntity<String> updateRewardPoints(@RequestBody CustomerRewardUpdateRequest request) throws CustomerNotFoundException{
+		try {
+			service.updateRewardPoints(request);
+			return ResponseEntity.ok("RewardPoints updated successfully");
+		} catch (CustomerNotFoundException e) {
+			return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+		}
+	}
 }

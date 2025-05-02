@@ -1,18 +1,11 @@
 package com.training.dto.response;
 
-import com.training.model.Customer;
+import com.training.dto.OrderDTO;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Getter
-@Setter
-@ToString
-public class CustomerSearchResponse {
+public class CustomerOrderResponse {
 	int statusCode;
 	String description;
-	Customer customer;
+	OrderDTO orderDTO;
 	public int getStatusCode() {
 		return statusCode;
 	}
@@ -25,10 +18,10 @@ public class CustomerSearchResponse {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Customer getCustomer() {
-		return customer;
+	public OrderDTO getOrder() {
+		return orderDTO;
 	}
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setOrderDTO(OrderDTO orderDTO) {
+		this.orderDTO = orderDTO;
 	}
 }

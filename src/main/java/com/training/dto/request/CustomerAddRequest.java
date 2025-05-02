@@ -9,4 +9,13 @@ import lombok.Setter;
 @Setter
 public class CustomerAddRequest {
 	Customer customer;
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	
 }
